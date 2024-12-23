@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Data</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="filterData">
+        <div class="container">
+            <div class="filterData__controls">
+                <button type="all" class="filterData__btn">ALL</button>
+                <button type="shirt" class="filterData__btn">Áo</button>
+                <button type="dress" class="filterData__btn">Váy</button>
+                <button type="hat" class="filterData__btn">Mũ</button>
+                <button type="paint" class="filterData__btn">Quần</button>
+            </div>
+
+            <div class="filterData__store row row-cols-6 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-2">
+                <div class="col">
+                    <img src="../assets/img/datafilter/dress1.jfif" alt="" class="filterData__img" type="dress">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/hat1.jfif" alt="" class="filterData__img" type="hat">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/paint1.jfif" alt="" class="filterData__img" type="paint">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/dress2.jfif" alt="" class="filterData__img" type="dress">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/paint2.jfif" alt="" class="filterData__img" type="paint">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/hat2.jfif" alt="" class="filterData__img" type="hat">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/shirt1.jfif" alt="" class="filterData__img" type="shirt">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/dress3.jfif" alt="" class="filterData__img" type="dress">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/shirt2.jfif" alt="" class="filterData__img" type="shirt">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/shirt3.jfif" alt="" class="filterData__img" type="shirt">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/hat3.jfif" alt="" class="filterData__img" type="hat">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/paint3.jfif" alt="" class="filterData__img" type="paint">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="filterDataTwo">
+        <div class="container">
+            <div class="filterDataTwo__controls">
+                <button type="all" class="filterDataTwo__btn">ALL</button>
+                <button type="shirt" class="filterDataTwo__btn">Áo</button>
+                <button type="dress" class="filterDataTwo__btn">Váy</button>
+                <button type="hat" class="filterDataTwo__btn">Mũ</button>
+                <button type="paint" class="filterDataTwo__btn">Quần</button>
+            </div>
+
+            <div class="filterDataTwo__store row row-cols-6 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-2">
+                <div class="col">
+                    <img src="../assets/img/datafilter/dress1.jfif" alt="" class="filterDataTwo__img" type="dress">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/hat1.jfif" alt="" class="filterDataTwo__img" type="hat">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/paint1.jfif" alt="" class="filterDataTwo__img" type="paint">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/dress2.jfif" alt="" class="filterDataTwo__img" type="dress">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/paint2.jfif" alt="" class="filterDataTwo__img" type="paint">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/hat2.jfif" alt="" class="filterDataTwo__img" type="hat">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/shirt1.jfif" alt="" class="filterDataTwo__img" type="shirt">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/dress3.jfif" alt="" class="filterDataTwo__img" type="dress">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/shirt2.jfif" alt="" class="filterDataTwo__img" type="shirt">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/shirt3.jfif" alt="" class="filterDataTwo__img" type="shirt">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/hat3.jfif" alt="" class="filterDataTwo__img" type="hat">
+                </div>
+                <div class="col ">
+                    <img src="../assets/img/datafilter/paint3.jfif" alt="" class="filterDataTwo__img" type="paint">
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <a href="../index.html" class="exit__btn">Exit</a>
+</body>
+
+<script>
+    // Cách 1
+    const btnList = document.querySelectorAll('.filterData__btn');
+    const imgList = document.querySelectorAll('.filterData__img');
+
+    btnList.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            let type = e.currentTarget.getAttribute('type');
+            imgList.forEach((img) => {
+                let itemType = img.getAttribute('type');
+                let parent = img.closest('.col');
+                if (type == 'all' || itemType == type) {
+                    parent.style.display = 'flex';
+                } else {
+                    parent.style.display = 'none';
+                }
+            })
+        });
+    });
+    ///////////////////////////////////////////////////////////
+
+    // Cách 2
+    const imgList2 = document.querySelectorAll('.filterDataTwo__img');
+    const btnList2 = document.querySelectorAll('.filterDataTwo__btn');
+    const container = document.querySelector('.filterDataTwo__store');
+
+    // init data
+    let arr = [];
+    imgList2.forEach((img) => {
+        arr.push({
+            src: img.src,
+            type: img.getAttribute('type')
+        });
+    });
+
+    btnList2.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            let type = e.currentTarget.getAttribute('type');
+            let filterData;
+            if (type === 'all') {
+                filterData = arr;
+            } else {
+                filterData = arr.filter((item) => {
+                    return item.type == type;
+                });
+            }
+            render(filterData);
+        });
+    });
+
+    function render(listData) {
+        container.innerHTML = ''; // Xóa nội dung cũ
+        listData.forEach((item) => {
+            const colDiv = document.createElement('div');
+            colDiv.classList.add('col');
+            colDiv.innerHTML = `
+            <img src="${item.src}" alt="" class="filterDataTwo__img" type="${item.type}">
+        `;
+            container.appendChild(colDiv);
+        });
+    }
+
+</script>
+
+</html>

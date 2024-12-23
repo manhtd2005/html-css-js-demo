@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Show</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="slideShow">
+        <div class="container">
+            <div class="slideShow__inner">
+                <div class="slideShow__list">
+                    <img src="../assets/img/slideshow/img1.jfif" alt="" class="slideShow__img">
+                    <img src="../assets/img/slideshow/img2.jfif" alt="" class="slideShow__img">
+                    <img src="../assets/img/slideshow/img3.jfif" alt="" class="slideShow__img">
+                    <img src="../assets/img/slideshow/img4.jfif" alt="" class="slideShow__img">
+                    <img src="../assets/img/slideshow/img5.jfif" alt="" class="slideShow__img">
+                    <img src="../assets/img/slideshow/img6.jfif" alt="" class="slideShow__img">
+                    <img src="../assets/img/slideshow/img7.jfif" alt="" class="slideShow__img">
+                </div>
+                <div class="slideShow__arrow--list">
+                    <div class="slideShow__arrow--item slideShow__arrow--left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path
+                                d="M10.15 0.5L4 6.65C3.95217 6.69489 3.91405 6.74911 3.88799 6.80931C3.86193 6.8695 3.84848 6.9344 3.84848 7C3.84848 7.0656 3.86193 7.1305 3.88799 7.19069C3.91405 7.25089 3.95217 7.30511 4 7.35L10.15 13.5"
+                                stroke="#000001" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+
+                    <div class="slideShow__arrow--dots">
+                    </div>
+                    <div class="slideShow__arrow--item slideShow__arrow--right">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                            <path
+                                d="M3.84998 0.5L9.99998 6.65C10.0478 6.69489 10.0859 6.74911 10.112 6.80931C10.138 6.8695 10.1515 6.9344 10.1515 7C10.1515 7.0656 10.138 7.1305 10.112 7.19069C10.0859 7.25089 10.0478 7.30511 9.99998 7.35L3.84998 13.5"
+                                stroke="#000001" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a href="../index.html" class="exit__btn">Exit</a>
+</body>
+<script>
+    const list = document.querySelector('.slideShow__list');
+    const imgs = document.querySelectorAll('.slideShow__img');
+    const left = document.querySelector('.slideShow__arrow--left');
+    const right = document.querySelector('.slideShow__arrow--right');
+    let pos = 0;
+    let widthDiv = imgs[0].offsetWidth;
+    const dots = document.querySelector('.slideShow__arrow--dots');
+    let listDot = [];
+    imgs.forEach(() => {
+        const dot = document.createElement('div');
+        dot.classList.add('slideShow__arrow--dots__item');
+        listDot.push(dot);
+        dots.appendChild(dot);
+    });
+
+    const changeSlide = () => {
+        if (pos == imgs.length - 1) {
+            pos = 0;
+            list.style.transform = 'translateX(0px)';
+            listDot[0].classList.add('slideShow__arrow--dots__item--choice');
+            listDot[imgs.length - 1].classList.remove('slideShow__arrow--dots__item--choice');
+
+        } else {
+            pos++;
+            list.style.transform = `translateX(-${widthDiv * pos}px)`;
+            listDot[pos - 1].classList.remove('slideShow__arrow--dots__item--choice');
+            listDot[pos].classList.add('slideShow__arrow--dots__item--choice');
+        }
+    };
+
+    let eventChangeSlide = setInterval(changeSlide, 2000);
+
+    right.addEventListener('click', () => {
+        clearInterval(eventChangeSlide);
+        changeSlide();
+        listDot[pos - 1].classList.remove('slideShow__arrow--dots__item--choice');
+        listDot[pos].classList.add('slideShow__arrow--dots__item--choice');
+        eventChangeSlide = setInterval(changeSlide, 2000);
+    });
+
+    left.addEventListener('click', () => {
+        clearInterval(eventChangeSlide);
+        if (pos == 0) {
+            pos = imgs.length - 1;
+            list.style.transform = `translateX(-${widthDiv * pos}px)`;
+            listDot[0].classList.remove('slideShow__arrow--dots__item--choice');
+            listDot[pos].classList.add('slideShow__arrow--dots__item--choice');
+        } else {
+            pos--;
+            list.style.transform = `translateX(-${widthDiv * pos}px)`;
+            listDot[pos + 1].classList.remove('slideShow__arrow--dots__item--choice');
+            listDot[pos].classList.add('slideShow__arrow--dots__item--choice');
+        }
+        eventChangeSlide = setInterval(changeSlide, 2000);
+    });
+
+    // listDot.forEach(addEventListener('click', function (dot) {
+    //     // dot.classList.remove('slideShow__arrow--dots__item--choice');
+    //     dot.classList.add('slideShow__arrow--dots__item--choice');
+    // }))
+
+</script>
+
+</html>

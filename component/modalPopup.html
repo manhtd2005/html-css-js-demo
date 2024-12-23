@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Popup Material UI</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="modalPopup">
+        <button class="modalPopup__btn">Open Modal</button>
+        <div class="modalPopup__overlay"></div>
+        <div class="modalPopup__textbox">
+            <div class="modalPopup__textbox--header">
+                <h2 class="modalPopup__textbox--heading">Thông báo đăng nhập</h2>
+                <img src="../assets/img/modalPopup/close.svg" alt="" class="modalPopup__textbox--icon">
+            </div>
+            <div class="modalPopup__textbox--content">
+                <p class="modalPopup__textbox--desc">Đã đăng nhập thành công</p>
+                <button class="modalPopup__textbox--close">Đóng</button>
+            </div>
+        </div>
+    </section>
+    <a href="../index.html" class="exit__btn">Exit</a>
+</body>
+<script>
+    const btnOpen = document.querySelector('.modalPopup__btn');
+    const overlay = document.querySelector('.modalPopup__overlay');
+    const textbox = document.querySelector('.modalPopup__textbox');
+    const closeElements = document.querySelectorAll('.modalPopup__textbox--close, .modalPopup__textbox--icon, .modalPopup__overlay');
+
+    const toggleModal = (isOpen) => {
+        const displayStyle = isOpen ? 'initial' : 'none';
+        overlay.style.display = displayStyle;
+        textbox.style.display = displayStyle;
+    };
+
+    btnOpen.addEventListener('click', () => toggleModal(true));
+
+    closeElements.forEach((close) => {
+        close.addEventListener('click', () => toggleModal(false))
+    });
+</script>
+
+
+</html>

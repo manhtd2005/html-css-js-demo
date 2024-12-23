@@ -1,0 +1,13 @@
+.exit__btn{
+    position: absolute;
+    right: 20px;
+    bottom: 60px;
+    color: #ccc;
+    background: red;
+    padding: 10px;
+    border-radius: 99px;
+
+    &:hover{
+        opacity: 0.5;
+    }
+}

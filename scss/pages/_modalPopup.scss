@@ -1,0 +1,79 @@
+.modalPopup {
+    position: relative;
+    background: skyblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    &__btn {
+        padding: 20px 30px;
+        display: inline-block;
+        border-radius: 99px;
+        background: #fff;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &__overlay {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    &__textbox {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: #fff;
+        width: 300px;
+        animation: modalShow 0.5s linear;
+
+        &--header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background: #ccc;
+        }
+
+        &--icon {
+            width: 15px;
+            cursor: pointer;
+        }
+
+        &--content {
+            padding: 10px;
+        }
+
+        &--desc {
+            margin-bottom: 20px;
+        }
+
+        &--close {
+            padding: 10px 20px;
+            border-radius: 10px;
+            background: #ccc;
+
+            &:hover {
+                opacity: 0.7;
+            }
+        }
+    }
+}
+
+@keyframes modalShow {
+    from {
+        top: -200px;
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

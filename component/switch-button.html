@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Switch Button</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="switchButton">
+        <div class="container">
+            <div class="switchButton__switch">
+                <input type="checkbox" id="switchButton__switch" class="switchButton__switch--input" hidden>
+                <label for="switchButton__switch" class="switchButton__switch--label">
+                    <span class="switchButton__switch--label__value">Monthly</span>
+                    <span class="switchButton__switch--label__value">Yearly</span>
+                </label>
+            </div>
+
+            <div class="switchButton__choice row row-cols-3 row-cols-md-1 g-2">
+                <div class="col">
+                    <article class="switchButton__info">
+                        <span class="switchButton__label">Free</span>
+                        <div class="switchButton__prices">
+                            <b class="switchButton__cost">$20</b>
+                            <b class="switchButton__cost switchButton__cost--sale">$10</b>
+                        </div>
+                        <ul class="switchButton__list">
+                            <li class="switchButton__item">500 visitors</li>
+                            <li class="switchButton__item">Unlimited projects</li>
+                            <li class="switchButton__item">extended free trial</li>
+                        </ul>
+                        <a href="#!" class="switchButton__sub">Create account</a>
+                    </article>
+                </div>
+
+                <div class="col">
+                    <article class="switchButton__info">
+                        <span class="switchButton__label">Standard</span>
+                        <div class="switchButton__prices">
+                            <b class="switchButton__cost">$99</b>
+                            <b class="switchButton__cost switchButton__cost--sale">$49</b>
+                        </div>
+                        <ul class="switchButton__list">
+                            <li class="switchButton__item">10000 visitors</li>
+                            <li class="switchButton__item">Unlimited projects</li>
+                            <li class="switchButton__item">extended free trial</li>
+                        </ul>
+                        <a href="#!" class="switchButton__sub">Create account</a>
+                    </article>
+                </div>
+
+                <div class="col">
+                    <article class="switchButton__info">
+                        <span class="switchButton__label">Enterprise</span>
+                        <div class="switchButton__prices">
+                            <b class="switchButton__cost">$199</b>
+                            <b class="switchButton__cost switchButton__cost--sale">$99</b>
+                        </div>
+                        <ul class="switchButton__list">
+                            <li class="switchButton__item">10000+ visitors</li>
+                            <li class="switchButton__item">Unlimited projects</li>
+                            <li class="switchButton__item">extended free trial</li>
+                        </ul>
+                        <a href="#!" class="switchButton__sub ">Create account</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <a href="../index.html" class="exit__btn">Exit</a>
+</body>
+
+<script>
+    const checkbox = document.querySelector('.switchButton__switch--input');
+    const cards = document.querySelectorAll('.switchButton__info');
+
+    cards.forEach(function (card) {
+        const cost = card.querySelector('.switchButton__cost'); // Gia goc
+        const sale = card.querySelector('.switchButton__cost--sale');
+
+        checkbox.addEventListener("change", function () {
+            if (checkbox.checked) {
+                card.classList.add('switchButton__info--price');
+                cost.style.textDecoration = "line-through";
+                sale.style.display= "initial";
+            } else {
+                card.classList.remove('switchButton__info--price');
+                cost.style.textDecoration = "none";
+                sale.style.display= "none";
+            }
+        })
+    });
+</script>
+
+</html>
