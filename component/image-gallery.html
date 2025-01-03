@@ -1,11 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Gallery</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+
 <body>
-    
+    <section class="imggallery">
+        <div class="container">
+            <div class="imggallery__list row row-cols-4 row-cols-md-2 g-2">
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img1.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img2.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img3.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img4.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img5.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img6.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img7.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="imggallery__item">
+                        <img src="../assets/img/imggallery/img8.jfif" alt="" class="imggallery__img">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action-->
+        <div class="imggallery__overlay"></div>
+        <div class="imggallery__action">
+            <img src="../assets/img/imggallery/arrowleft.svg" alt="" class="imggallery__arrow imggallery__arrow--left">
+            <img src="../assets/img/imggallery/img8.jfif" alt="" class="imggallery__big">
+            <img src="../assets/img/imggallery/arrowright.svg" alt=""
+                class="imggallery__arrow imggallery__arrow--right">
+        </div>
+    </section>
+    <a href="../index.html" class="exit__btn">Exit</a>
+
 </body>
+<script>
+    const listImg = document.querySelectorAll('.imggallery__img');
+    const overlay = document.querySelector('.imggallery__overlay');
+    const action = document.querySelector('.imggallery__action');
+    const imgBig = document.querySelector('.imggallery__big');
+    const left = document.querySelector('.imggallery__arrow--left');
+    const right = document.querySelector('.imggallery__arrow--right');
+
+    let currentIndex = 0;
+    listImg.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentIndex = index;
+            overlay.style.display = 'initial';
+            action.style.display = 'flex';
+            imgBig.src = item.src;
+        });
+
+        right.addEventListener('click', () => {
+            currentIndex++;
+            imgBig.src = item[currentIndex].src;
+        })
+
+        left.addEventListener('click', () => {
+            currentIndex--;
+            imgBig.src = item[currentIndex].src;
+        })
+    });
+
+    overlay.addEventListener('click', () => {
+        overlay.style.display = 'none';
+        action.style.display = 'none';
+    })
+
+    document.addEventListener('keydown', (e) => {
+        if (e.keyCode == 27) {
+            overlay.style.display = 'none';
+            action.style.display = 'none';
+        }
+    });
+
+</script>
+
 </html>

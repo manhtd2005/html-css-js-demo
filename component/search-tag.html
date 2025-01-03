@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Tags</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="searchTag">
+        <div class="searchTag__inner">
+            <h3 class="searchTag__heading">Search Tags</h3>
+            <div class="searchTag__content">
+                <div class="searchTag__hint">
+                    <div class="searchTag__hint--item">
+                        <button class="searchTag__hint--Close">x</button>
+                        <span class="searchTag__hint--text">nodejs</span>
+                    </div>
+
+                </div>
+                <input type="text" class="searchTag__input" placeholder="Type and enter">
+            </div>
+            <button class="searchTag__remove">Remove All</button>
+        </div>
+    </section>
+    <a href="../index.html" class="exit__btn">Exit</a>
+
+</body>
+<script>
+    const input = document.querySelector('.searchTag__input');
+    const hint = document.querySelector('.searchTag__hint');
+    const removeItem = document.querySelector('.searchTag__hint--Close');
+    const removeBtn = document.querySelector('.searchTag__remove');
+
+
+    let tags = ['nodejs', 'html'];
+
+    function render() {
+        hint.innerHTML = '';
+        for (let i = 0; i < tags.length; i++) {
+            const tag = tags[i]; // Lấy tag tại chỉ số i
+            const tagItem = document.createElement('div');
+            tagItem.className = 'searchTag__hint--item';
+
+            tagItem.innerHTML = `
+                <button class="searchTag__hint--Close" onclick="removeTag(${i})">x</button>
+                <span class="searchTag__hint--text">${tag}</span>
+            `;
+
+            hint.appendChild(tagItem);
+        }
+
+    }
+    render();
+    input.addEventListener('keydown', (e) => {
+        if (e.key == 'Enter') {
+            tags.push(input.value.trim());
+            render();
+            input.value = '';
+        }
+    });
+
+    function removeTag(index) {
+        tags.splice(index, 1); // Xóa tag tại vị trí index
+        render(); // Cập nhật lại danh sách tag
+    }
+
+    removeBtn.addEventListener('click', () => {
+        tags = []
+        render();
+    })
+
+</script>
+
+</html>

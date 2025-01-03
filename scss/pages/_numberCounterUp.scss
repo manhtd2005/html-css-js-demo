@@ -1,0 +1,26 @@
+.counterUp{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: palevioletred;
+    gap: 30px;
+
+    &__counter{
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background: skyblue;
+        gap: 20px;
+        border-radius: 10px;
+    }
+
+    &__heading{
+        font-size: 20px;
+    }
+
+    &__number{
+        font-size: 30px;
+    }
+}

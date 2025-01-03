@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Counter Up</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="counterUp">
+        <article class="counterUp__counter">
+            <h3 class="counterUp__heading">Facebook</h3>
+            <b class="counterUp__number">3300</b>
+        </article>
+        <article class="counterUp__counter">
+            <h3 class="counterUp__heading">Youtube</h3>
+            <b class="counterUp__number">1000</b>
+        </article>
+        <article class="counterUp__counter">
+            <h3 class="counterUp__heading">Tiktok</h3>
+            <b class="counterUp__number">9900</b>
+        </article>
+        <a href="../index.html" class="exit__btn">Exit</a>
+    </section>
+</body>
+<script>
+    const listCounter = document.querySelectorAll('.counterUp__counter');
+
+    function count(lc) {
+        const numberCounter = lc.querySelector('.counterUp__number');
+        let to = parseInt(numberCounter.innerText);
+        let count = 0;
+        let time = 144; // Chọn đại
+        let step = to / time;
+
+        let counting = setInterval(() => {
+            count += step;
+            if (count > to) {
+                clearInterval(counting);
+                numberCounter.innerText = to
+            } else {
+                numberCounter.innerText = Math.round(count);
+            }
+        }, 1);
+    }
+
+    listCounter.forEach((item) => {
+        count(item)
+    });
+</script>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use JSON</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="useJSON">
+        <div class="useJSON__inner">
+            <div class="useJSON__form">
+                <div class="useJSON__input">
+                    <label for="" class="useJSON__label">Name</label>
+                    <input type="text" class="useJSON__input--name" placeholder="nhập text">
+                </div>
+                <div class="useJSON__input">
+                    <label for="" class="useJSON__label">Description</label>
+                    <input type="text" class="useJSON__input--desc" placeholder="nhập desc">
+                </div>
+
+                <button class="useJSON__btnAdd">Thêm</button>
+            </div>
+            <div class="useJSON__down">
+                <div class="useJSON__row">
+                    <div class="useJSON__content">
+                        <p class="useJSON__content--name">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta suscipit cumque esse. Illo,
+                            alias non facilis quisquam dignissimos voluptas placeat aperiam laborum molestias
+                            perferendis reiciendis? Officia aperiam distinctio culpa? Voluptas?
+                        </p>
+                        <p class="useJSON__content--desc">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum natus maiores est maxime.
+                            Odit eos corporis unde? At, similique cumque provident magni officia minima earum voluptates
+                            ad aut. Doloremque, optio.
+                        </p>
+                    </div>
+                    <button class="useJSON__btnDelete">Xóa</button>
+                </div>
+
+                <div class="useJSON__row">
+                    <div class="useJSON__content">
+                        <p class="useJSON__content--name">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab excepturi quis similique
+                            reprehenderit! Ab non iste explicabo illo facere mollitia tenetur, similique nobis
+                            consectetur amet porro in dicta optio doloribus.
+                        </p>
+                        <p class="useJSON__content--desc">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat quas aliquam ab error qui
+                            modi, earum aspernatur nisi nulla impedit, similique doloremque ipsam sed excepturi porro
+                            rem veritatis eligendi distinctio!
+                        </p>
+                    </div>
+                    <button class="useJSON__btnDelete">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    const inputName = document.querySelector('.useJSON__input--name');
+    const inputDesc = document.querySelector('.useJSON__input--desc');
+    const btnAdd = document.querySelector('.useJSON__btnAdd');
+    const content = document.querySelector('.useJSON__down');
+    const apiURL = 'http://localhost:3000/manageCourse';
+
+    // Hàm tạo khóa học mới
+    async function createData(data) {
+        let options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        };
+
+        let response = await fetch(apiURL, options);
+        if (response.ok) {
+            await addData(); // Cập nhật danh sách
+            inputName.value = '';
+            inputDesc.value = '';
+        }
+    }
+
+    // Hàm lấy và hiển thị danh sách khóa học (render)
+    async function addData() {
+        let dataList = await fetch(apiURL).then((res) => res.json());
+        content.innerHTML = ''; // Xóa nội dung cũ
+
+        dataList.forEach((data) => {
+            let item = document.createElement('div');
+            item.classList.add('useJSON__row');
+            item.innerHTML = `
+                    <div class="useJSON__content">
+                        <p class="useJSON__content--name">${data.name}</p>
+                        <p class="useJSON__content--desc">${data.desc}</p>
+                    </div>
+                    <button class="useJSON__btnDelete">Xóa</button>
+                `;
+            content.appendChild(item);
+
+            // Xóa khóa học
+            const btnDelete = item.querySelector('.useJSON__btnDelete');
+            btnDelete.addEventListener('click', () => {
+                deleteData(data.id);
+            });
+        });
+    }
+
+    // Hàm xóa khóa học
+    async function deleteData(id) {
+        let response = await fetch(`${apiURL}/${id}`, {
+            method: 'DELETE',
+        });
+        await addData(); // Cập nhật danh sách
+    }
+
+    // Gắn sự kiện click cho nút Thêm
+    btnAdd.addEventListener('click', () => {
+        const name = inputName.value;
+        const desc = inputDesc.value;
+        if (name && desc) {
+            createData({ name, desc });
+        }
+    });
+
+    // Tải danh sách khóa học khi trang được tải
+    addData();
+
+</script>
+
+</html>

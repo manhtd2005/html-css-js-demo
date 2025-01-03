@@ -1,0 +1,96 @@
+.weather {
+    height: 100vh;
+    background: linear-gradient(to right, rgb(44, 44, 93), skyblue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__card {
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: #fff;
+        border-radius: 30px;
+    }
+
+    &__input {
+        padding: 10px;
+        width: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 2px solid #000;
+        border-radius: 10px;
+    }
+
+    &__text {
+        padding-right: 10px;
+        width: 250px;
+        font-size: 20px;
+    }
+
+    &__search {
+        width: 20px;
+        &--icon {
+            width: inherit;
+            object-fit: cover;
+        }
+    }
+
+    &__down {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__none {
+        display: none;
+    }
+    &__loader {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    &__city,
+    &__country {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    &__degree {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 50px;
+        opacity: 0.8;
+    }
+
+    &__status {
+        margin: 20px 0 25px;
+        font-size: 25px;
+    }
+
+    &__parameter {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 80%;
+        &--item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        &--icon {
+            width: 25px;
+        }
+    }
+}

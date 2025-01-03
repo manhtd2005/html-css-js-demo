@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON placeholder</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <table class="jsonPlaceholder"></table>
+    <a href="../index.html" class="exit__btn">Exit</a>
+</body>
+<script>
+    const jsonPlaceholder = document.querySelector('.jsonPlaceholder');
+
+    async function listData() {
+        const apiURL = `https://jsonplaceholder.typicode.com/posts`;
+        let data = await fetch(apiURL).then((res) => res.json());
+        console.log(data);
+        
+        for (let i = 0; i < data.length; i++) {
+            const item = document.createElement('tr');
+            item.className = 'jsonPlaceholder__item';
+            item.innerHTML = `
+                <td class="jsonPlaceholder__userId">${data[i].userId}</td>
+                <td class="jsonPlaceholder__id">${data[i].id}</td>
+                <td class="jsonPlaceholder__title">${data[i].title}</td>
+                <td class="jsonPlaceholder__body">${data[i].body}</td>
+            `;
+            jsonPlaceholder.appendChild(item);
+        }
+
+    }
+
+    listData();
+
+</script>
+
+</html>

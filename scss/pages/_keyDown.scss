@@ -1,0 +1,46 @@
+.keyDown {
+    height: 100vh;
+    background: skyblue;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 40px;
+    }
+    &__actionNumber {
+        padding: 40px 45px;
+        border: 3px solid #fff;
+        border-radius: 50%;
+        &--number {
+            font-size: 30px;
+            font-weight: 600;
+        }
+    }
+    &__grid {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        &--col {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 15px;
+            font-size: 20px;
+        }
+
+        &--desc {
+            padding: 15px 60px;
+            background: rgb(107, 107, 209);
+            border-radius: 15px 15px 0 0;
+        }
+
+        &--info {
+            padding: 10px 60px;
+        }
+    }
+}

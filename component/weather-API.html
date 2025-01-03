@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <section class="weather">
+        <article class="weather__card">
+            <div class="weather__input">
+                <input type="text" class="weather__text" placeholder="Search">
+                <button class="weather__search">
+                    <img src="../assets/img/weatherAPI/search.svg" alt="" class="weather__search--icon">
+                </button>
+            </div>
+            <div class="weather__down">
+                <div class="weather__loader">
+                    <span class="weather__city"><span class="weather__country"></span></span>
+                    <span class="weather__time"></span>
+                </div>
+                <b class="weather__degree"></b>
+                <span class="weather__status"></span>
+                <div class="weather__parameter">
+                    <div class="weather__parameter--item">
+                        <img src="../assets/img/weatherAPI/eye.svg" alt="" class="weather__parameter--icon">
+                        <span class="weather__parameter--desc weather__see"></span>
+                    </div>
+
+                    <div class="weather__parameter--item">
+                        <img src="../assets/img/weatherAPI/wind.svg" alt="" class="weather__parameter--icon">
+                        <span class="weather__parameter--desc weather__wind"></span>
+                    </div>
+
+                    <div class="weather__parameter--item">
+                        <img src="../assets/img/weatherAPI/sun.svg" alt="" class="weather__parameter--icon">
+                        <span class="weather__parameter--desc weather__warm"></span>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <a href="../index.html" class="exit__btn">Exit</a>
+    </section>
+</body>
+<script>
+    let input = document.querySelector('.weather__text');
+    const button = document.querySelector('.weather__search');
+
+
+    // Call API
+    let content = document.querySelector('.weather__down');
+    let city = document.querySelector('.weather__city');
+    let country = document.querySelector('.weather__country');
+    let time = document.querySelector('.weather__time');
+    let degree = document.querySelector('.weather__degree');
+    let status = document.querySelector('.weather__status');
+    let see = document.querySelector('.weather__see');
+    let wind = document.querySelector('.weather__wind');
+    let warm = document.querySelector('.weather__warm');
+
+    async function changeWeatherUI() {
+        let search = input.value.trim();
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=d27f828689afcbac6ee0d0fe75da7532`;
+        let data = await fetch(apiUrl).then((res) => res.json());
+        console.log(data);
+        
+        if (data.cod == 200) {
+            content.classList.remove('weather__none');
+            city.innerText = data.name;
+            country.innerText = data.sys.country;
+            status.innerText = data.weather[0].description;
+            see.innerText = data.visibility + 'm';
+            wind.innerText = data.wind.speed + 'm/s';
+            warm.innerText = data.main.humidity + '%';
+            degree.innerText = Math.round(data.main.temp - 273.15) + '℃';
+            time.innerText = new Date().toLocaleString('vi')
+        } else {
+            content.classList.add('weather__none');
+
+        }
+    }
+
+    button.addEventListener('click', (e) => {
+        changeWeatherUI();
+    })
+    input.addEventListener('keypress', (e) => {
+        if (e.code === 'Enter') {
+            changeWeatherUI();
+        }
+    })
+
+</script>
+
+</html>

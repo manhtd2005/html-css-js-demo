@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Server</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+
+<body>
+    <table class="jsonServer"></table>
+    <a href="../index.html" class="exit__btn">Exit</a>
+</body>
+<script>
+    const jsonServer = document.querySelector('.jsonServer');
+
+    async function listData() {
+        const apiURL = `http://localhost:3000/comments`;
+        let data = await fetch(apiURL).then((res) => res.json());
+        console.log(data);
+
+        for (let i = 0; i < data.length; i++) {
+            const item = document.createElement('tr');
+            item.className = 'jsonServer__item';
+            item.innerHTML = `
+            <td class="jsonServer__userId">${data[i].id}</td>
+            <td class="jsonServer__id">${data[i].text}</td>
+            <td class="jsonServer__title">${data[i].postId}</td>
+        `;
+            jsonServer.appendChild(item);
+        }
+
+    }
+
+    listData();
+</script>
+
+</html>
